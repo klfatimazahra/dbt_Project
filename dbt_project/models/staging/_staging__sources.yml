@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: raw_drivers
+        description: Raw driver profile and rating records.
+      - name: raw_vehicles
+        description: Raw vehicle specifications assigned to drivers.
+      - name: raw_zones
+        description: Raw geographic city zones.
+      - name: raw_ride_events
+        description: Raw ride request and completion events.
+        loaded_at_field: requested_at
+        freshness:
+          warn_after: { count: 12, period: hour }
+          error_after: { count: 24, period: hour }
